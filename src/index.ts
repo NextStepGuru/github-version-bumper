@@ -5,7 +5,7 @@ const { version } = require('../version.json')
 console.log(`Version ${version}`)
 
 Toolkit.run(async (tools) => {
-  const fileName = process.env.VERSION_FILE_NAME || 'package.json'
+  let fileName = process.env.VERSION_FILE_NAME || 'package.json'
   let entry = process.env.VERSION_ENTRY || 'version'
   const githubUser = process.env.GITHUB_USER || 'GitHub Version Bumper'
   const githubEmail =
@@ -68,6 +68,7 @@ Toolkit.run(async (tools) => {
     }
     else if(currentBranch === 'staging' || currentBranch === 'qc'  || currentBranch === 'production' ){
       console.log('current branch')
+      fileName = fileName + '-rc'
       await bumpVersion(fileName,{ major: true, entry })
     }
     else if(currentBranch === 'alpha'){
