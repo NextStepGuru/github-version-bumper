@@ -15,6 +15,7 @@ Toolkit.run(async (tools) => {
 
   try {
     // SET USER
+    console.log('process-started---')
     await tools.runInWorkspace('git', [
       'config',
       'user.name',
@@ -38,7 +39,7 @@ Toolkit.run(async (tools) => {
         JSON.stringify(await tools.runInWorkspace('git', ['log', '-1'])).toLowerCase() || ''
 
     console.log('lastcommitmessage', lastCommit)
-
+    console.log('current branch', currentBranch)
     // Bumping Starts
     if(currentBranch === 'master'){
       if (lastCommit.toLowerCase().includes('ci-ignore')) {
