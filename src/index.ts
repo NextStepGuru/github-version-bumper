@@ -12,7 +12,7 @@ Toolkit.run(async (tools) => {
     process.env.GITHUB_EMAIL || 'github-version-bumper@users.noreply.github.com'
 
   const commitMessage = 'version bumped to v'
-
+console.log('check123')
   try {
     // SET USER
     await tools.runInWorkspace('git', [
