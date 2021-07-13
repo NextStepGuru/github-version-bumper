@@ -68,9 +68,10 @@ Toolkit.run(async (tools) => {
       }
     }
     else if(currentBranch === 'staging' || currentBranch === 'qc'  || currentBranch === 'production' ){
-       console.log('current branch/')
+       console.log('current branch is:', currentBranch)
+      console.log('filename demo-',fileName + '-rc' )
       // fileName = fileName + '-rc'
-      // await bumpVersion(fileName,{ major: true, entry })
+      await bumpVersion(fileName,{ major: true, entry })
     }
     else if(currentBranch === 'alpha'){
 
