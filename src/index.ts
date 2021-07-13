@@ -71,7 +71,6 @@ Toolkit.run(async (tools) => {
        console.log('current branch is:', currentBranch)
       console.log('entry:', entry)
       console.log('filename demo-',fileName + '-rc' )
-      // fileName = fileName + '-rc'
       await bumpVersion(fileName,{ major: true, entry })
     }
     else if(currentBranch === 'alpha'){
