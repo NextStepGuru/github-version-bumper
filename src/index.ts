@@ -38,7 +38,7 @@ Toolkit.run(async (tools) => {
     const lastCommit =
         JSON.stringify(await tools.runInWorkspace('git', ['log', '-1'])).toLowerCase() || ''
 
-    // console.log('lastcommitmessage', lastCommit)
+     console.log('lastcommitmessage', lastCommit)
     console.log('current branch', currentBranch)
     // Bumping Starts
     if(currentBranch === 'master'){
@@ -72,7 +72,7 @@ Toolkit.run(async (tools) => {
       console.log('entry:', entry)
       console.log('filename demo-',fileName + '-rc' )
       // fileName = fileName + '-rc'
-      await bumpVersion(fileName,{ major: true, entry })
+      await bumpVersion(fileName,{ major: true, replace: 'x.x.1-rc' })
     }
     else if(currentBranch === 'alpha'){
 
