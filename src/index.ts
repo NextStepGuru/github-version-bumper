@@ -12,7 +12,7 @@ Toolkit.run(async (tools) => {
       process.env.GITHUB_EMAIL || 'github-version-bumper@users.noreply.github.com'
 
   const commitMessage = 'version bumped to v'
-
+console.log('fileName', fileName)
   try {
     // SET USER
     console.log('process-started---')
@@ -81,7 +81,7 @@ Toolkit.run(async (tools) => {
 
     if (!ignoreBump) {
       const newVersion = JSON.parse(tools.getFile(fileName)).version
-
+       console.log('-newVersion', newVersion)
       await tools.runInWorkspace('git', [
         'commit',
         '-a',
