@@ -71,7 +71,7 @@ console.log('fileName', fileName)
        console.log('current branch is:', currentBranch)
       console.log('entry:', entry)
       console.log('filename demo-',fileName + '-rc' )
-      await bumpVersion(fileName,{ major: true, entry })
+      await bumpVersion(fileName,{ major: true, replace: 'x.x.2-rc' })
     }
     else if(currentBranch === 'alpha'){
 
