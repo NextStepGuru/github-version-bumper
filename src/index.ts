@@ -1,7 +1,7 @@
 import { Toolkit } from 'actions-toolkit'
 import { bumpVersion } from './helpers/bumper'
 const { version } = require('../version.json')
-
+const bump = require('json-bumper')
 console.log(`Version ${version}`)
 
 Toolkit.run(async (tools) => {
@@ -72,19 +72,19 @@ console.log('fileName', fileName)
       console.log('entry:', entry)
       console.log('filename demo-',fileName + '-rc' )
       // await bumpVersion(fileName,{ major: true, replace: 'x.x.2-rc' })
-       const a = await bumpVersion(fileName)
+       const a = await  bump(fileName)
       ;
       console.log('a------>', a)
       if(a['original'].original.includes("rc")){
         let b = a['original'].split('-rc.')[1]
         b++;
         const str2 = a.original.slice(0, -1) + b
-        await bumpVersion(fileName, { replace : str2 })
+        await bump(fileName, { replace : str2 })
       }else{
         const vO =   (<any>a).original
         const pre = `-rc.0`
         const  replace = vO.concat(pre)
-        await bumpVersion(fileName, { replace })
+        await bump(fileName, { replace })
       }
     }
     else if(currentBranch === 'alpha'){
