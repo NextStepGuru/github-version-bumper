@@ -73,11 +73,12 @@ console.log('fileName', fileName)
       console.log('filename demo-',fileName + '-rc' )
       // await bumpVersion(fileName,{ major: true, replace: 'x.x.2-rc' })
        const a = await bumpVersion(fileName)
+      ;
 
-      if((<any>a).original.includes("rc")){
-        let b = (<any>a).split('-rc.')[1]
+      if(a.original.includes("rc")){
+        let b = a.original.split('-rc.')[1]
         b++;
-        const str2 = (<any>a).slice(0, -1) + b
+        const str2 = a.original.slice(0, -1) + b
         await bumpVersion(fileName, { replace : str2 })
       }else{
         const vO =   (<any>a).original
