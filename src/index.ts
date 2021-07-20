@@ -76,12 +76,12 @@ console.log('fileName', fileName)
       ;
       console.log('a------>', a)
       if(a.original.includes("rc")){
-        let b = a['original'].split('-rc.')[1]
+        let b = a.original.split('-rc.')[1]
         b++;
         const str2 = a.original.slice(0, -1) + b
         await bump(fileName, { replace : str2 })
       }else{
-        const vO =   (<any>a).original
+        const vO =   a.original
         const pre = `-rc.0`
         const  replace = vO.concat(pre)
         await bump(fileName, { replace })
@@ -90,8 +90,6 @@ console.log('fileName', fileName)
     else if(currentBranch === 'alpha'){
 
     }
-
-
 
     if (!ignoreBump) {
       const newVersion = JSON.parse(tools.getFile(fileName)).version
