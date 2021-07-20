@@ -68,10 +68,6 @@ console.log('fileName', fileName)
       }
     }
     else if(currentBranch === 'staging' || currentBranch === 'qc'  || currentBranch === 'production' ){
-       console.log('current branch is:', currentBranch)
-      console.log('entry:', entry)
-      console.log('filename demo-',fileName + '-rc' )
-      // await bumpVersion(fileName,{ major: true, replace: 'x.x.2-rc' })
        const bumpedBranch = await bumpVersion(fileName)
       ;
       if(bumpedBranch.original.includes("rc")){
@@ -87,7 +83,19 @@ console.log('fileName', fileName)
       }
     }
     else if(currentBranch === 'alpha'){
-
+      const bumpedBranch = await bumpVersion(fileName)
+      ;
+      if(bumpedBranch.original.includes("pr")){
+        let branchVersion = bumpedBranch.original.split('-pr.')[1]
+        branchVersion++;
+        const str2 = bumpedBranch.original.slice(0, -1) + branchVersion
+        await bumpVersion(fileName, { replace : str2 })
+      }else{
+        const vO =   bumpedBranch.original
+        const pre = `-pr.0`
+        const  replace = vO.concat(pre)
+        await bumpVersion(fileName, { replace })
+      }
     }
 
     if (!ignoreBump) {
