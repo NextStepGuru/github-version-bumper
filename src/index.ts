@@ -72,15 +72,15 @@ console.log('fileName', fileName)
       console.log('entry:', entry)
       console.log('filename demo-',fileName + '-rc' )
       // await bumpVersion(fileName,{ major: true, replace: 'x.x.2-rc' })
-       const a = await bumpVersion(fileName)
+       const bumpedBranch = await bumpVersion(fileName)
       ;
-      if(a.original.includes("rc")){
-        let b = a.original.split('-rc.')[1]
-        b++;
-        const str2 = a.original.slice(0, -1) + b
+      if(bumpedBranch.original.includes("rc")){
+        let branchVersion = bumpedBranch.original.split('-rc.')[1]
+        branchVersion++;
+        const str2 = bumpedBranch.original.slice(0, -1) + branchVersion
         await bumpVersion(fileName, { replace : str2 })
       }else{
-        const vO =   a.original
+        const vO =   bumpedBranch.original
         const pre = `-rc.0`
         const  replace = vO.concat(pre)
         await bumpVersion(fileName, { replace })
