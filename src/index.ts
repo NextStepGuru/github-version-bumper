@@ -75,7 +75,7 @@ console.log('fileName', fileName)
        const a = await  bump(fileName)
       ;
       console.log('a------>', a)
-      if(a['original'].original.includes("rc")){
+      if(a.original.includes("rc")){
         let b = a['original'].split('-rc.')[1]
         b++;
         const str2 = a.original.slice(0, -1) + b
